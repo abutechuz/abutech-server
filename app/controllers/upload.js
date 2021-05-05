@@ -2,6 +2,7 @@ const authJWT = require('../library/auth.js')
 
 module.exports = {
   POST: function (req, res) {
+    authJWT(req)
     let sampleFile;
     let uploadPath;
 
@@ -21,36 +22,40 @@ module.exports = {
     if (sampleFile.length > 1 && sampleFile) {
       sampleFile.map(obj => {
         if (obj.mimetype.match(/image/g)) {
-          uploadPath = scriptName + '/data/img/' + uuidv4();
+          let val = uuidv4();
+          uploadPath = scriptName + '/data/img/' + val ;
           obj.mv(uploadPath, function (err) {
             if (err)
               return res.status(500).send(err)
           });
-          Sources.push(uploadPath)
+          Sources.push(val)
         } else if (obj.mimetype.match(/video/g)) {
-          uploadPath = scriptName + '/data/video/' + uuidv4();
+          let val = uuidv4();
+          uploadPath = scriptName + '/data/video/' + val ;
           obj.mv(uploadPath, function (err) {
             if (err)
               return res.status(500).send(err)
           });
-          Sources.push(uploadPath)
+          Sources.push(val)
         }
       })
     } else {
       if (sampleFile.mimetype.match(/image/g)) {
-        uploadPath = scriptName + '/data/img/' + uuidv4();
+        let val = uuidv4();
+        uploadPath = scriptName + '/data/img/' + val ;
         sampleFile.mv(uploadPath, function (err) {
           if (err)
             return res.status(500).send(err)
         });
-        Sources.push(uploadPath)
-      } else if (sampleFile.mimetype.match(/video/g)) {
-        uploadPath = scriptName + '/data/video/' + uuidv4();
+        Sources.push(val)
+      } else if (sampleFile.mimetype.match(/video/g)){
+        let val = uuidv4()
+        uploadPath = scriptName + '/data/video/' + val ;
         sampleFile.mv(uploadPath, function (err) {
           if (err)
             return res.status(500).send(err)
         });
-        Sources.push(uploadPath)
+        Sources.push(val)
       }
     }
 
