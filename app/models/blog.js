@@ -29,6 +29,8 @@ const setBlog = async ({body : {  blog_body_uz , blog_body_ru , blog_body_en , b
   const SQL = `update blogs set  blog_body_uz=$1 , blog_body_ru=$2 , blog_body_en=$3 where blog_id=$4 returning *`
   
   const res = await fetchOne(SQL,  blog_body_uz , blog_body_ru , blog_body_en , blog_id )
+
+  return res
 }
 
 
