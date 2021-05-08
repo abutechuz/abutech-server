@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
-
+const cors = require("cors")
 const app = express()
 
 // ROUTERS
@@ -16,9 +16,11 @@ const projects = require('./routes/projects.js')
 const techs = require('./routes/techs.js')
 const partners = require('./routes/partners.js')
 const services = require('./routes/services.js')
+const docs = require('./routes/docs.js')
 
 
 
+app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, '../data/')))
 app.use(fileUpload({ parseNested: true }))
@@ -36,6 +38,8 @@ app.use('/projecttype', projecttype)
 app.use('/techs', techs)//ok
 app.use("/partners", partners)
 app.use("/services", services)
+app.use("/docs", docs)
+
 
 
 const swaggerUi = require('swagger-ui-express');
