@@ -5,11 +5,8 @@ module.exports = {
 		user: 'dfkwqrej',
 		password: 'jOHJ58wfNnAT4jeV5fE7BqplXpDlhGV0',
 		database: 'dfkwqrej',
-		port : 5432
+		port: 5432
 	},
-	
+
 	JWT_KEY: 'Secretkey'
-
-	
 }
-

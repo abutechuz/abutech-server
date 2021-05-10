@@ -10,6 +10,7 @@
     "office-to-pdf": "^4.0.0",
     "pdf-officegen": "^2.0.4",
     "pg": "^8.6.0",
+    "postgres": "^1.0.2",
     "swagger-ui-express": "^4.1.6",
     "uuid": "^8.3.2"
   },
