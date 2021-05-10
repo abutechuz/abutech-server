@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
-const cors = require("cors")
+const cors = require('cors')
 const app = express()
 
 // ROUTERS
@@ -22,7 +22,7 @@ const submittion = require('./routes/submittion.js')
 
 
 app.use(cors({
-  origin: "*"
+  origin: '*'
 }))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, '../data/')))
@@ -36,13 +36,13 @@ app.use('/login', login)
 app.use('/users', users)
 app.use('/members', members)
 app.use('/upload', upload)
-app.use("/projects", projects)
+app.use('/projects', projects)
 app.use('/projecttype', projecttype)
 app.use('/techs', techs)
-app.use("/partners", partners)
-app.use("/services", services)
-app.use("/submittion", submittion)
-app.use("/docs", docs)
+app.use('/partners', partners)
+app.use('/services', services)
+app.use('/submittion', submittion)
+app.use('/docs', docs)
 
 
 
