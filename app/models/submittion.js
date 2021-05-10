@@ -17,23 +17,28 @@ const insertSubmittions = async ({body : {
   submittion_phone,
   submittion_email,
   submittion_companyname
-}}) => {
+}}, submittion_brief) => {
   
-  const SQL = `insert into submittions ( submittion_fullname,submittion_message ,submittion_phone,submittion_email,submittion_companyname) values($1,$2,$3,$4,$5) returning *`
+  const SQL = `insert into submittions ( submittion_fullname,submittion_message ,submittion_phone,submittion_email,submittion_companyname,submittion_brief) values($1,$2,$3,$4,$5,$6) returning *`
   
-  const subs = await fetch(SQL,  
-    submittion_fullname,
-    submittion_message ,
-    submittion_phone,
-    submittion_email ?? null,
-    submittion_companyname ?? null
-    )
-    
-    return subs
+  try {
+    const subs = await fetchOne(SQL,  
+      submittion_fullname,
+      submittion_message ,
+      submittion_phone,
+      submittion_email ?? null,
+      submittion_companyname ?? null,
+      submittion_brief
+      )
+      
+      return subs
+    } catch (error) {
+      return error
+    }
   }
-
-  const deleteSubmittions = async ({body : {submittion_id}}) => {
   
+  const deleteSubmittions = async ({body : {submittion_id}}) => {
+    
     const SQL = `UPDATE submittions
     SET submittion_active=false
     WHERE submittion_id=$1 returning * ;`
