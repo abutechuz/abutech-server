@@ -138,6 +138,13 @@ values
    'image.jpg'
  )
 ;
+
+create table docs (
+doc_id serial not NULL primary key,
+doc_src VARCHAR(4096) not null ,
+service_id int not null REFERENCES services(service_id) ,
+doc_date TIMESTAMP not null default CURRENT_TIMESTAMP
+);
 -- create unique index technologies_uniq_idx on technologies(lower(technology_name));
 -- comment on table blogs is 'What technologies we use!';
 
