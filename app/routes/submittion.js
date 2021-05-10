@@ -7,6 +7,4 @@ router
     .post(submission.POST)
     .delete(submission.DELETE)
 
-
-
 module.exports = router

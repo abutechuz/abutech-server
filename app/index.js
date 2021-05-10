@@ -17,6 +17,7 @@ const techs = require('./routes/techs.js')
 const partners = require('./routes/partners.js')
 const services = require('./routes/services.js')
 const docs = require('./routes/docs.js')
+const submittion = require('./routes/submittion.js')
 
 
 
@@ -40,6 +41,7 @@ app.use('/projecttype', projecttype)
 app.use('/techs', techs)
 app.use("/partners", partners)
 app.use("/services", services)
+app.use("/submittion", submittion)
 app.use("/docs", docs)
 
 
