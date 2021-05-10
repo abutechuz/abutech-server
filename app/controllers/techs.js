@@ -17,10 +17,9 @@ module.exports = {
   POST: async (req, res) => {
     try {
       authJWT(req)
-      const tech = techsModel.addTechnology(req)
+      const tech = await techsModel.addTechnology(req)
 
       res.send(tech)
-
     } catch (error) {
       res.send(error)
     }

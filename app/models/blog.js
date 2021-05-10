@@ -17,7 +17,7 @@ const getBlogs = async ({query : { page , limit , lang }}) => {
 
 const insertBlog = async ({body : { blog_body_uz , blog_body_ru , blog_body_en }}) => {
   
-  const SQL = `insert into blogs (blog_body_uz , blog_body_ru , blog_body_en ) values ($1) returning *`
+  const SQL = `insert into blogs (blog_body_uz , blog_body_ru , blog_body_en ) values ($1,$2,$3) returning *`
   
   const response = await fetchOne(SQL,  blog_body_uz , blog_body_ru , blog_body_en )
   
