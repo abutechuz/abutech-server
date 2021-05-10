@@ -1,6 +1,15 @@
 const { verify } = require('./jwt.js')
+const { fetchOne } = require('../library/database/postgres.js')
 
-module.exports = ({ cookies: { token } }) => {
+module.exports = async ({ cookies: { token } }) => {
+  const { user_id } = await verify(token)
+  const SQL = `select user_id, user_username from users where user_id = $1`
 
-  return verify(token)
+  const user = await fetchOne(SQL, user_id)
+
+  if (!user) {
+    return true
+  } else {
+    return false
+  }
 }

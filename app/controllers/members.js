@@ -1,10 +1,10 @@
 const memberModel = require('../models/members.js')
 const authJWT = require('../library/auth.js')
-const auth = require('../library/auth.js')
 
 module.exports = {
   GET: async (req, res) => {
     try {
+      authJWT(req)
       const { page, limit } = req.query
 
       const members = await memberModel.getMembers(page, limit)
