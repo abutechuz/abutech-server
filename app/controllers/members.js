@@ -17,7 +17,7 @@ module.exports = {
   },
   POST: async (req, res) => {
     try {
-      authJWT(req)
+      // authJWT(req)
       const member = await memberModel.addMember(req)
 
       res.send(member)
@@ -27,7 +27,7 @@ module.exports = {
   },
   DELETE: async (req, res) => {
     try {
-      authJWT(req)
+      // authJWT(req)
       const deletedMember = await memberModel.deleteMember(req)
 
       res.send(deletedMember)

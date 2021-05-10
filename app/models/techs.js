@@ -1,4 +1,4 @@
-const { fetch } = require('../library/database/postgres')
+const { fetch, fetchOne } = require('../library/database/postgres')
 
 const getTechnologies = async () => {
   const SQL = `
@@ -23,11 +23,10 @@ const addTechnology = async (req) => {
     technology_name,
     technology_type,
     technology_image
-  )
-  values ($1, $2, $3);
+  ) values ($1, $2, $3) returning * ;
   `
 
-  const tech = await fetch(SQL, technology_name, technology_type, technology_image)
+  const tech = await fetchOne(SQL, technology_name, technology_type, technology_image)
 
   return tech
 }

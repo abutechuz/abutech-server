@@ -9,7 +9,7 @@ module.exports = {
       const user = await login(username, password)
       const token = sign(user, { expiresIn: 60 * 60 * 3600 })
 
-      res.cookie('token', token).end()
+      res.cookie('token', token).send({token,...user}).end()
 
     } catch (error) {
 

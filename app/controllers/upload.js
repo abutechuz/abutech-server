@@ -2,6 +2,7 @@ const { ok } = require('assert');
 const authJWT = require('../library/auth.js')
 const fs = require('fs')
 const path = require('path');
+const { type } = require('os');
 
 module.exports = {
   GET : function (req,res) {
@@ -11,7 +12,17 @@ module.exports = {
     
     
     try {
-      res.send([...fs.readdirSync(folderImg), ...fs.readdirSync(folderVideo)])
+      res.send([...fs.readdirSync(folderImg).map(el => {
+       return {
+        type : "img" , 
+        src : el
+       }
+      }), ...fs.readdirSync(folderVideo).map(el => {
+        return {
+         type : "video" , 
+         src : el
+        }
+       })])
     } catch (error) {
       res.send(error)
     }

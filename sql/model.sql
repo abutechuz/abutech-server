@@ -15,6 +15,8 @@ CREATE TABLE users(
   user_created_at TIMESTAMP WITH TIME ZONE default CURRENT_TIMESTAMP
 );
 
+create unique index admin_idx on users(user_username)
+
 comment on table users is 'Table for users and admins';
 
 

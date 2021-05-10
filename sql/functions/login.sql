@@ -7,7 +7,8 @@ create or replace function login_user(_username varchar, _password varchar) retu
     v_password varchar := _password;
   begin
   select
-    user_id
+    user_id,
+    user_username
   from
     users as u
   where u.user_username = v_username and

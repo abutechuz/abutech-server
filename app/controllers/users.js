@@ -1,14 +1,14 @@
 const usersModel = require('../models/users.js')
-const authJWT = require('../library/auth.js')
-const auth = require('../library/auth.js')
+// const authJWT = require('../library/auth.js')
+// const auth = require('../library/auth.js')
 
 module.exports = {
   GET: async (req, res) => {
     try {
-      authJWT(req)
-      const blogs = await usersModel.getUsers(req)
+      // authJWT(req)
+      const users = await usersModel.getUsers(req)
 
-      res.send(blogs)
+      res.send(users)
     } catch (error) {
       console.log(error)
       res.send(error)
@@ -16,17 +16,17 @@ module.exports = {
   },
   POST: async (req, res) => {
     try {
-      authJWT(req)
-      const blogs = await usersModel.insertUser(req)
+      // authJWT(req)
+      const user = await usersModel.insertUser(req)
 
-      res.send(blogs)
+      res.send(user)
     } catch (error) {
       res.send(error)
     }
   },
   PUT: async (req, res) => {
     try {
-      authJWT(req)
+      // authJWT(req)
       const returning = await usersModel.setUser(req)
 
       res.send(returning)
@@ -36,10 +36,10 @@ module.exports = {
   },
   DELETE: async (req, res) => {
     try {
-      authJWT(req)
-      const blog = await usersModel.deleteUser(req)
+      // authJWT(req)
+      const user = await usersModel.deleteUser(req)
 
-      res.send(blog)
+      res.send(user)
     } catch (error) {
       res.send(error)
     }
