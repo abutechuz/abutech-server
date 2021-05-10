@@ -31,8 +31,22 @@ const addTechnology = async (req) => {
   return tech
 }
 
+const deleteTechnology =  async (req) => {
+
+  const {
+    technology_id
+  } = req.body
+
+  const SQL = `delete from technologies where technology_id = $1 returning *`
+
+  const tech = await fetchOne(SQL, technology_id)
+
+  return tech
+}
+
   module.exports = {
     getTechnologies,
-    addTechnology
+    addTechnology,
+    deleteTechnology
   }
 

@@ -1,5 +1,5 @@
 const partnersModel = require('../models/partners.js')
-const authJWT = require('../library/auth.js')
+const { verify } = require('../library/jwt.js')
 
 module.exports = {
   GET: async (req, res) => {
@@ -14,6 +14,7 @@ module.exports = {
   },
   POST: async (req, res) => {
     try {
+      verify(req.cookies.token)
       const blogs = await partnersModel.insertPartners(req)
 
       res.send(blogs)
@@ -23,6 +24,7 @@ module.exports = {
   },
   PUT: async (req, res) => {
     try {
+      verify(req.cookies.token)
       const returning = await partnersModel.setPartner(req)
 
       res.send(returning)
@@ -32,6 +34,7 @@ module.exports = {
   },
   DELETE: async (req, res) => {
     try {
+      verify(req.cookies.token)
       const blog = await partnersModel.deletePartner(req)
 
       res.send(blog)
