@@ -1,15 +1,6 @@
 const { verify } = require('./jwt.js')
 
-module.exports = (req) => {
+module.exports = ({ cookies: { token } }) => {
 
-  try {
-    const { token } = req.cookies
-    const user = verify(token)
-    return user
-  } catch (error) {
-    console.log(error)
-    throw new Error(error)
-  }
-
+  return verify(token)
 }
-
