@@ -20,7 +20,9 @@ const docs = require('./routes/docs.js')
 
 
 
-app.use(cors())
+app.use(cors({
+  origin:"*"
+}))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, '../data/')))
 app.use(fileUpload({ parseNested: true }))
@@ -28,14 +30,14 @@ app.use(express.json())
 app.use(cookieParser())
 
 // set the routes
-app.use('/blog', blog) //ok
+app.use('/blog', blog)
 app.use('/login', login)
 app.use('/users', users)
 app.use('/members', members)
 app.use('/upload', upload)
 app.use("/projects", projects)
 app.use('/projecttype', projecttype)
-app.use('/techs', techs)//ok
+app.use('/techs', techs)
 app.use("/partners", partners)
 app.use("/services", services)
 app.use("/docs", docs)
