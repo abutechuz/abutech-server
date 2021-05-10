@@ -33,7 +33,7 @@ const addService = async (req) => {
     $6, $7
   );`
 
-  const service = await fetch(SQL, image, uz_title, uz_body, ru_title, ru_body, en_title, en_body )
+  const service = await fetch(SQL, image, uz_title, uz_body, ru_title, ru_body, en_title, en_body)
 
   return service
 
@@ -45,11 +45,7 @@ const deleteService = async (id) => {
   `
   const deleted = await fetchOne(SQL, id)
 
-  if (deleted) {
-    return 1
-  } else {
-    return 0
-  }
+  return deleted
 }
 
 

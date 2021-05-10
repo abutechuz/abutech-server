@@ -29,11 +29,11 @@ module.exports = {
 
   DELETE: async (req, res) => {
     try {
-      const { id } = req.body
+      const { service_id } = req.body
 
-      const deletedService = await servicesModel.deleteService(id)
+      const deletedService = await servicesModel.deleteService(service_id)
 
-      res.send({deletedService})
+      res.send({ deletedService })
 
     } catch (error) {
       res.send(error)

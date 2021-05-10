@@ -40,8 +40,8 @@ app.use("/projects", projects)
 app.use('/projecttype', projecttype)
 app.use('/techs', techs)
 app.use("/partners", partners)
-app.use("/services", services) //
-app.use("/submittion", submittion) //
+app.use("/services", services)
+app.use("/submittion", submittion)
 app.use("/docs", docs)
 
 
