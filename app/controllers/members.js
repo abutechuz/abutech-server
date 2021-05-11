@@ -1,24 +1,21 @@
 const memberModel = require('../models/members.js')
-const authJWT = require('../library/auth.js')
+const { verify } = require('../library/jwt.js')
 
 module.exports = {
-  GET: async (req, res) => {
+  GET: async ({ cookies: { token }, query: { page, limit }}, res) => {
     try {
-      authJWT(req)
-      const { page, limit } = req.query
-
+      verify(token)
       const members = await memberModel.getMembers(page, limit)
 
 
       res.send(members)
-
     } catch (error) {
-      res.send(error)
+      res.status(401).send(error)
     }
   },
   POST: async (req, res) => {
     try {
-      // authJWT(req)
+      verify(req.cookies.token)
       const member = await memberModel.addMember(req)
 
       res.send(member)
@@ -28,7 +25,7 @@ module.exports = {
   },
   DELETE: async (req, res) => {
     try {
-      // authJWT(req)
+      verify(req.cookies.token)
       const deletedMember = await memberModel.deleteMember(req)
 
       res.send(deletedMember)

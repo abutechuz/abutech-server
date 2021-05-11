@@ -1,10 +1,10 @@
 const submittionsModel = require('../models/submittion.js')
-const authJWT = require('../library/auth.js')
+const { verify } = require('../library/jwt.js')
 
 module.exports = {
   GET: async (req, res) => {
     try {
-      authJWT(req)
+      verify(req.cookies.token)
       const submittions = await submittionsModel.getSubmittions(req)
 
       res.send(submittions)
@@ -16,7 +16,6 @@ module.exports = {
 
   POST: async (req, res) => {
     try {
-      // authJWT(req)
       let sampleFile;
       let uploadPath;
 
@@ -34,7 +33,7 @@ module.exports = {
         uploadPath = scriptName + `/data/doc/${uuid}`;
         sampleFile.mv(uploadPath, function (err) {
           if (err)
-            return res.status(500).send(err)
+          return res.status(500).send(err)
         });
       } else {
         return res.send(new Error('Error'))
@@ -50,7 +49,7 @@ module.exports = {
 
   DELETE: async (req, res) => {
     try {
-      authJWT(req)
+      verify(req.cookies.token)
       const submittion = await submittionsModel.deleteSubmittions(req)
 
       res.send(submittion)

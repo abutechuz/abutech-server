@@ -1,5 +1,5 @@
 const projectsModel = require('../models/projects.js')
-const authJWT = require('../library/auth.js')
+const { verify } = require('../library/jwt.js')
 
 module.exports = {
   GET: async (req, res) => {
@@ -14,6 +14,7 @@ module.exports = {
   },
   POST: async (req, res) => {
     try {
+      verify(req.cookies.token)
       const blogs = await projectsModel.insertProject(req)
 
       res.send(blogs)
@@ -23,6 +24,7 @@ module.exports = {
   },
   PUT: async (req, res) => {
     try {
+      verify(req.cookies.token)
       const returning = await projectsModel.setProject(req)
 
       res.send(returning)
@@ -32,6 +34,7 @@ module.exports = {
   },
   DELETE: async (req, res) => {
     try {
+      verify(req.cookies.token)
       const blog = await projectsModel.deleteProject(req)
 
       res.send(blog)
