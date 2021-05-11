@@ -5,6 +5,8 @@ const app = require('./app/index.js')
 
 const http2Server = http2.createServer(app)
 
-http2Server.listen( PORT, () => {
+http2Server.listen(PORT, () => {
   console.log(`http://localhost:` + PORT)
 })
+
+// process.exit()

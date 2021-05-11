@@ -2,7 +2,9 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
-const cors = require("cors")
+const cors = require('cors')
+const auth = require('./library/auth.js')
+
 const app = express()
 
 // ROUTERS
@@ -31,7 +33,16 @@ app.use(express.json())
 app.use(cookieParser())
 
 // set the routes
-app.use('/blog', blog)
+app.use('/blog', (req, res, next) => {
+  const m = req.method
+
+  if (m === 'POST' || m === 'DELETE' || m === 'GET') {
+    auth(req, res, next)
+  } else {
+    next()
+  }
+}, blog)
+
 app.use('/login', login)
 app.use('/users', users)
 app.use('/members', members)
@@ -54,5 +65,4 @@ var options = {
 };
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
-
 module.exports = app

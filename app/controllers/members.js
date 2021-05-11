@@ -9,6 +9,7 @@ module.exports = {
 
       const members = await memberModel.getMembers(page, limit)
 
+
       res.send(members)
 
     } catch (error) {

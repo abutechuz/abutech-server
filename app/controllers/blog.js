@@ -1,10 +1,8 @@
 const blogsModel = require('../models/blog.js')
-const authJWT = require('../library/auth.js')
 
 module.exports = {
   GET: async (req, res) => {
     try {
-      // const user = authJWT(req)
       const blogs = await blogsModel.getBlogs(req)
 
       res.send(blogs)
@@ -39,5 +37,5 @@ module.exports = {
     } catch (error) {
       res.send(error)
     }
-  },
+  }
 }
