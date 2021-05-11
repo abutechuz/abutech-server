@@ -64,7 +64,7 @@ app.use('/members', (req, res, next) => {
 app.use('/upload', (req, res, next) => {
   const m = req.method
 
-  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
+  if (m === 'POST' || m === 'GET') {
     auth(req, res, next)
   } else {
     next()
@@ -85,7 +85,7 @@ app.use('/projects', (req, res, next) => {
 app.use('/projecttype', (req, res, next) => {
   const m = req.method
 
-  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
+  if (m === 'POST' || m === 'PUT') {
     auth(req, res, next)
   } else {
     next()
@@ -95,7 +95,7 @@ app.use('/projecttype', (req, res, next) => {
 app.use('/techs', (req, res, next) => {
   const m = req.method
 
-  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
+  if (m === 'POST' || m === 'DELETE') {
     auth(req, res, next)
   } else {
     next()
