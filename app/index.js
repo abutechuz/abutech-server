@@ -36,7 +36,7 @@ app.use(cookieParser())
 app.use('/blog', (req, res, next) => {
   const m = req.method
 
-  if (m === 'POST' || m === 'DELETE' || m === 'GET') {
+  if (m === 'POST', m === 'DELETE' || m === 'PUT') {
     auth(req, res, next)
   } else {
     next()
@@ -44,25 +44,112 @@ app.use('/blog', (req, res, next) => {
 }, blog)
 
 app.use('/login', login)
-app.use('/users', users)
-app.use('/members', members)
-app.use('/upload', upload)
-app.use('/projects', projects)
-app.use('/projecttype', projecttype)
-app.use('/techs', techs)
-app.use('/partners', partners)
-app.use('/services', services)
-app.use('/submittion', submittion)
-app.use('/docs', docs)
+
+app.use('/users', (req, res, next) => {
+  const m = req.method
+  auth(req, res, next)
+}, users)
+
+app.use('/members', (req, res, next) => {
+  const m = req.method
+
+  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
+    auth(req, res, next)
+  } else {
+    next()
+  }
+}, members)
 
 
+app.use('/upload', (req, res, next) => {
+  const m = req.method
 
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('../swagger.json');
+  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
+    auth(req, res, next)
+  } else {
+    next()
+  }
+}, upload)
+
+
+app.use('/projects', (req, res, next) => {
+  const m = req.method
+
+  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
+    auth(req, res, next)
+  } else {
+    next()
+  }
+}, projects)
+
+app.use('/projecttype', (req, res, next) => {
+  const m = req.method
+
+  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
+    auth(req, res, next)
+  } else {
+    next()
+  }
+}, projecttype)
+
+app.use('/techs', (req, res, next) => {
+  const m = req.method
+
+  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
+    auth(req, res, next)
+  } else {
+    next()
+  }
+}, techs)
+
+app.use('/partners', (req, res, next) => {
+  const m = req.method
+
+  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
+    auth(req, res, next)
+  } else {
+    next()
+  }
+}, partners)
+
+app.use('/services', (req, res, next) => {
+  const m = req.method
+
+  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
+    auth(req, res, next)
+  } else {
+    next()
+  }
+}, services)
+
+app.use('/submittion', (req, res, next) => {
+  const m = req.method
+
+  if (m === 'DELETE' || m === 'GET') {
+    auth(req, res, next)
+  } else {
+    next()
+  }
+}, submittion)
+
+app.use('/docs', (req, res, next) => {
+  const m = req.method
+
+  if (m === 'POST') {
+    auth(req, res, next)
+  } else {
+    next()
+  }
+}, docs)
+
+
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('../swagger.json')
 
 var options = {
   explorer: true
-};
+}
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options))
+
 module.exports = app
