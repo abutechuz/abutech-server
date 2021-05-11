@@ -53,7 +53,7 @@ app.use('/users', (req, res, next) => {
 app.use('/members', (req, res, next) => {
   const m = req.method
 
-  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
+  if (m === 'POST' || m === 'DELETE') {
     auth(req, res, next)
   } else {
     next()

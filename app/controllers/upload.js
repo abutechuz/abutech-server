@@ -1,6 +1,5 @@
 const fs = require('fs')
 const path = require('path')
-const { verify } = require('../library/jwt.js')
 
 module.exports = {
   GET : function (req, res) {

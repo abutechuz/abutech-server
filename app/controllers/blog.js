@@ -13,7 +13,6 @@ module.exports = {
   },
   POST: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const blogs = await blogsModel.insertBlog(req)
 
       res.send(blogs)
@@ -23,7 +22,6 @@ module.exports = {
   },
   PUT: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const returning = await blogsModel.setBlog(req)
 
       res.send(returning)
@@ -32,7 +30,6 @@ module.exports = {
     }
   },
   DELETE: async (req, res) => {
-    verify(req.cookies.token)
     try {
       const blog = await blogsModel.deleteBlog(req)
 

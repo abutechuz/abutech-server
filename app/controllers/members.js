@@ -4,7 +4,6 @@ const { verify } = require('../library/jwt.js')
 module.exports = {
   GET: async ({ cookies: { token }, query: { page, limit }}, res) => {
     try {
-      verify(token)
       const members = await memberModel.getMembers(page, limit)
 
 
@@ -15,7 +14,6 @@ module.exports = {
   },
   POST: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const member = await memberModel.addMember(req)
 
       res.send(member)
@@ -25,7 +23,6 @@ module.exports = {
   },
   DELETE: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const deletedMember = await memberModel.deleteMember(req)
 
       res.send(deletedMember)
