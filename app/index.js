@@ -115,7 +115,7 @@ app.use('/partners', (req, res, next) => {
 app.use('/services', (req, res, next) => {
   const m = req.method
 
-  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
+  if (m === 'POST' || m === 'DELETE') {
     auth(req, res, next)
   } else {
     next()
@@ -151,5 +151,10 @@ var options = {
 }
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options))
+
+app.use((err, req, res, next) => {
+  console.log(err)
+  next()
+})
 
 module.exports = app
