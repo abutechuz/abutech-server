@@ -1,5 +1,5 @@
 module.exports = {
-	PORT: process.env.PORT || 6001,
+	PORT: process.env.PORT || 8080,
 	DATABASE: {
 		host: 'hattie.db.elephantsql.com',
 		user: 'dfkwqrej',
