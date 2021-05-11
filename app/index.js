@@ -36,7 +36,7 @@ app.use(cookieParser())
 app.use('/blog', (req, res, next) => {
   const m = req.method
 
-  if (m === 'POST', m === 'DELETE' || m === 'PUT') {
+  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
     auth(req, res, next)
   } else {
     next()
