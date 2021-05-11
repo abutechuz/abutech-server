@@ -14,7 +14,6 @@ module.exports = {
     }
   },
   POST: async function (req, res) {
-    verify(req.cookies.token)
     let sampleFile
     let uploadPath
 

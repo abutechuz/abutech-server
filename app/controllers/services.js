@@ -17,7 +17,6 @@ module.exports = {
 
   POST: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const services = await servicesModel.addService(req)
 
       res.send(services)
@@ -29,7 +28,6 @@ module.exports = {
 
   DELETE: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const { service_id } = req.body
 
       const deletedService = await servicesModel.deleteService(service_id)

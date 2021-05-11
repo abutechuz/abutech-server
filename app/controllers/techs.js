@@ -16,7 +16,6 @@ module.exports = {
 
   POST: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const tech = await techsModel.addTechnology(req)
 
       res.send(tech)
@@ -27,7 +26,6 @@ module.exports = {
 
   DELETE: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const tech = await techsModel.deleteTechnology(req)
 
       res.send(tech)

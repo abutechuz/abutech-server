@@ -4,7 +4,6 @@ const { verify } = require('../library/jwt.js')
 module.exports = {
   GET: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const submittions = await submittionsModel.getSubmittions(req)
 
       res.send(submittions)
@@ -49,7 +48,6 @@ module.exports = {
 
   DELETE: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const submittion = await submittionsModel.deleteSubmittions(req)
 
       res.send(submittion)

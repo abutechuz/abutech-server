@@ -5,5 +5,7 @@ router
     .route('/')
     .get(techs.GET)
     .post(techs.POST)
+    .delete(techs.DELETE)
+
 
 module.exports = router

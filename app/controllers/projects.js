@@ -14,7 +14,6 @@ module.exports = {
   },
   POST: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const blogs = await projectsModel.insertProject(req)
 
       res.send(blogs)
@@ -24,7 +23,6 @@ module.exports = {
   },
   PUT: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const returning = await projectsModel.setProject(req)
 
       res.send(returning)
@@ -34,7 +32,6 @@ module.exports = {
   },
   DELETE: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const blog = await projectsModel.deleteProject(req)
 
       res.send(blog)

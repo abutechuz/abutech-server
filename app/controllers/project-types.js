@@ -4,7 +4,6 @@ const { verify } = require('../library/jwt.js')
 module.exports = {
   GET: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const blogs = await projecttypes.getProjectTypes(req)
 
       res.send(blogs)
@@ -15,7 +14,6 @@ module.exports = {
   },
   POST: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const projecttype = await projecttypes.insertProjectType(req)
 
       res.send(projecttype)
@@ -25,7 +23,6 @@ module.exports = {
   },
   PUT: async (req, res) => {
     try {
-      verify(req.cookies.token)
       const returning = await projecttypes.setProjectType(req)
 
       res.send(returning)
