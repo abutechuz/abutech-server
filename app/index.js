@@ -154,7 +154,14 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options))
 
 app.use((err, req, res, next) => {
   console.log(err)
-  next()
+
+  if (err) {
+    res.status(400).send({ error: error.messsage })
+    next()
+  } else {
+    res.status(200).end()
+    next()
+  }
 })
 
 module.exports = app
