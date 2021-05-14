@@ -12,6 +12,7 @@ module.exports = {
       res.status(401).send(error)
     }
   },
+
   POST: async (req, res) => {
     try {
       const member = await memberModel.addMember(req)
@@ -21,6 +22,7 @@ module.exports = {
       res.send(error)
     }
   },
+
   DELETE: async (req, res) => {
     try {
       const deletedMember = await memberModel.deleteMember(req)

@@ -2,13 +2,12 @@ const { fetch, fetchOne } = require('../library/database/postgres')
 
 const getServices = async (page, limit, lang) => {
   const SQL = `
-    select * from get_services($1, $2, $3);
+    select
+      *
+    from get_services($1, $2, $3);
   `
 
-  const services = await fetch(SQL, page, limit, lang)
-
-  return services
-
+  return await fetch(SQL, page, limit, lang)
 }
 
 const addService = async (req) => {
@@ -33,9 +32,7 @@ const addService = async (req) => {
     $6, $7
   );`
 
-  const service = await fetch(SQL, image, uz_title, uz_body, ru_title, ru_body, en_title, en_body)
-
-  return service
+  return await fetch(SQL, image, uz_title, uz_body, ru_title, ru_body, en_title, en_body)
 
 }
 
@@ -43,9 +40,8 @@ const deleteService = async (id) => {
   const SQL = `
     delete from services where service_id = $1 returning *;
   `
-  const deleted = await fetchOne(SQL, id)
 
-  return deleted
+  return await fetchOne(SQL, id)
 }
 
 

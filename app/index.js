@@ -2,10 +2,14 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('../swagger.json')
 const cors = require('cors')
+
 
 const auth = require('./library/auth.js')
 const app = express()
+
 
 // ROUTERS
 const blog = require('./routes/blog.js')
@@ -22,15 +26,13 @@ const docs = require('./routes/docs.js')
 const submittion = require('./routes/submittion.js')
 
 
-
-app.use(cors({
-  origin: '*'
-}))
+app.use(cors({ origin: '*' }))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, '../data/')))
 app.use(fileUpload({ parseNested: true }))
 app.use(express.json())
 app.use(cookieParser())
+
 
 // set the routes
 app.use('/blog', (req, res, next) => {
@@ -41,12 +43,14 @@ app.use('/blog', (req, res, next) => {
   } else {
     next()
   }
+
 }, blog)
 
 app.use('/login', login)
 
 app.use('/users', (req, res, next) => {
   const m = req.method
+
   auth(req, res, next)
 }, users)
 
@@ -143,14 +147,10 @@ app.use('/docs', (req, res, next) => {
 }, docs)
 
 
-const swaggerUi = require('swagger-ui-express')
-const swaggerDocument = require('../swagger.json')
 
-var options = {
-  explorer: true
-}
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options))
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { explorer: true }))
 
 app.use((err, req, res, next) => {
   console.log(err)

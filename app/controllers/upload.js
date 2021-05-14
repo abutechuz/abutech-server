@@ -38,10 +38,11 @@ module.exports = {
 
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
 
-    var scriptName = path.dirname(path.dirname(path.dirname(__filename)))
+    let scriptName = path.dirname(path.dirname(path.dirname(__filename)))
 
     sampleFile = req.files.sampleFile
     let Sources = []
+
     if (sampleFile.length > 1 && sampleFile) {
       sampleFile.map(obj => {
         if (obj.mimetype.match(/image/g)) {
@@ -62,6 +63,7 @@ module.exports = {
           Sources.push(val)
         }
       })
+
     } else {
       if (sampleFile.mimetype.match(/image/g)) {
         let val = uuidv4()

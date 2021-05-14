@@ -12,6 +12,7 @@ module.exports = {
       res.send(error)
     }
   },
+
   POST: async (req, res) => {
     try {
       const projecttype = await projecttypes.insertProjectType(req)
@@ -21,6 +22,7 @@ module.exports = {
       res.send(error)
     }
   },
+
   PUT: async (req, res) => {
     try {
       const returning = await projecttypes.setProjectType(req)

@@ -1,5 +1,4 @@
 const techsModel = require('../models/techs.js')
-const { verify } = require('../library/jwt.js')
 
 module.exports = {
   GET: async (req, res) => {

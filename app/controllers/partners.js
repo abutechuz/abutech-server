@@ -12,6 +12,7 @@ module.exports = {
       res.send(error)
     }
   },
+
   POST: async (req, res) => {
     try {
       const blogs = await partnersModel.insertPartners(req)
@@ -21,6 +22,7 @@ module.exports = {
       res.send(error)
     }
   },
+
   PUT: async (req, res) => {
     try {
       const returning = await partnersModel.setPartner(req)
@@ -30,6 +32,7 @@ module.exports = {
       res.send(error)
     }
   },
+
   DELETE: async (req, res) => {
     try {
       const blog = await partnersModel.deletePartner(req)
