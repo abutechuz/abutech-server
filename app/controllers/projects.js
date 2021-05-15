@@ -12,6 +12,7 @@ module.exports = {
       res.send(error)
     }
   },
+
   POST: async (req, res) => {
     try {
       const blogs = await projectsModel.insertProject(req)
@@ -21,6 +22,7 @@ module.exports = {
       res.send(error)
     }
   },
+
   PUT: async (req, res) => {
     try {
       const returning = await projectsModel.setProject(req)
@@ -30,6 +32,7 @@ module.exports = {
       res.send(error)
     }
   },
+
   DELETE: async (req, res) => {
     try {
       const blog = await projectsModel.deleteProject(req)
@@ -38,5 +41,5 @@ module.exports = {
     } catch (error) {
       res.send(error)
     }
-  },
+  }
 }

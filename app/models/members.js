@@ -16,7 +16,6 @@ const getMembers = async (page, limit) => {
   const members = await fetch(SQL, page, limit)
 
   return members
-
 }
 
 const addMember = async (req) => {

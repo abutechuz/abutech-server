@@ -5,18 +5,12 @@ const getTechnologies = async () => {
     select * from technologies;
   `
 
-  const techs = await fetch(SQL)
-
-  return techs
+  return await fetch(SQL)
 }
 
 const addTechnology = async (req) => {
 
-  const {
-    technology_name,
-    technology_type,
-    technology_image
-  } = req.body
+  const { technology_name, technology_type, technology_image  } = req.body
 
   const SQL = `
   insert into technologies(
@@ -26,22 +20,15 @@ const addTechnology = async (req) => {
   ) values ($1, $2, $3) returning * ;
   `
 
-  const tech = await fetchOne(SQL, technology_name, technology_type, technology_image)
+  return await fetchOne(SQL, technology_name, technology_type, technology_image)
 
-  return tech
 }
 
-const deleteTechnology =  async (req) => {
-
-  const {
-    technology_id
-  } = req.body
+const deleteTechnology =  async ({ body: { technology_id }}) => {
 
   const SQL = `delete from technologies where technology_id = $1 returning *`
 
-  const tech = await fetchOne(SQL, technology_id)
-
-  return tech
+  return await fetchOne(SQL, technology_id)
 }
 
   module.exports = {

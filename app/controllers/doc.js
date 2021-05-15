@@ -13,6 +13,7 @@ module.exports = {
       res.send(error)
     }
   },
+
   POST: async function (req, res) {
     let sampleFile
     let uploadPath
@@ -34,7 +35,7 @@ module.exports = {
       })
 
       res.send(uploadPath)
-    }else {
+    } else {
       res.send(new Error('Error'))
     }
   },

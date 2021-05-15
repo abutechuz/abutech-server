@@ -1,11 +1,12 @@
-const usersModel = require('../models/users.js')
+const partnersModel = require('../models/partners.js')
+
 
 module.exports = {
   GET: async (req, res) => {
     try {
-      const users = await usersModel.getUsers(req)
+      const parners = await partnersModel.getPartners(req)
 
-      res.send(users)
+      res.send(parners)
     } catch (error) {
       console.log(error)
       res.send(error)
@@ -14,9 +15,9 @@ module.exports = {
 
   POST: async (req, res) => {
     try {
-      const user = await usersModel.insertUser(req)
+      const blogs = await partnersModel.insertPartners(req)
 
-      res.send(user)
+      res.send(blogs)
     } catch (error) {
       res.send(error)
     }
@@ -24,7 +25,7 @@ module.exports = {
 
   PUT: async (req, res) => {
     try {
-      const returning = await usersModel.setUser(req)
+      const returning = await partnersModel.setPartner(req)
 
       res.send(returning)
     } catch (error) {
@@ -34,11 +35,11 @@ module.exports = {
 
   DELETE: async (req, res) => {
     try {
-      const user = await usersModel.deleteUser(req)
+      const blog = await partnersModel.deletePartner(req)
 
-      res.send(user)
+      res.send(blog)
     } catch (error) {
       res.send(error)
     }
-  }
+  },
 }
