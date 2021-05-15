@@ -15,7 +15,7 @@ insert into submittions(
 ) VALUES (
     'Muhamamdsiddiq Kuvandikov',
     'Menga sayt kerak!',
-    '+998941233223',
+    '+9923',
     'example@gmail.com',
     'No company'
   ),

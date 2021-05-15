@@ -1,5 +1,4 @@
 const { fetch, fetchOne } = require('../library/database/postgres')
-const { validationResult, body} = require('express-validator')
 
 
 const getSubmittions = async ({ query : { page , limit }}) => {
@@ -28,8 +27,6 @@ console.log(submittion_fullname,
   const SQL = `insert into submittions ( submittion_fullname,submittion_message ,submittion_phone,submittion_email,submittion_companyname,submittion_brief) values($1,$2,$3,$4,$5,$6) returning *`
 
   try {
-    body(submittion_email).isEmail()
-
     return await fetchOne(SQL,
       submittion_fullname,
       submittion_message ,
