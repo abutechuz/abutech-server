@@ -43,13 +43,10 @@ module.exports = {
         
         res.send(submittion)
       } else {
-        res.send({
+        res.status(409).send({
           validation : false
         })
       }
-      
-      
-      
     } catch (error) {
       res.send(error)
     }

@@ -18,12 +18,6 @@ const insertSubmittions = async ({body : {
   submittion_email,
   submittion_companyname
 }}, submittion_brief) => {
-
-console.log(submittion_fullname,
-  submittion_message,
-  submittion_phone,
-  submittion_email,
-  submittion_companyname , submittion_brief);
   const SQL = `insert into submittions ( submittion_fullname,submittion_message ,submittion_phone,submittion_email,submittion_companyname,submittion_brief) values($1,$2,$3,$4,$5,$6) returning *`
 
   try {
