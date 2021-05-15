@@ -38,7 +38,7 @@ app.use('/blogs', async (req, res, next) => await auth(req , res , next , ['GET'
 app.use('/login', login)
 app.use('/users', (req, res, next) => auth(req, res, next, []), users)
 app.use('/members', (req, res, next) => auth(req, res, next, ['GET']), members)
-app.use('/upload', (req, res, next) => auth(req, res, next, ['POST', 'GET']), upload)
+app.use('/upload', (req, res, next) => auth(req, res, next, []), upload)
 app.use('/projects', (req, res, next) => auth(req, res, next, ['GET']), projects)
 app.use('/projecttype', (req, res, next) => auth(req, res, next, ['GET']), projecttype)
 app.use('/techs', (req, res, next) => auth(req, res, next, ['GET']), techs)
