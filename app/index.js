@@ -34,131 +34,31 @@ app.use(express.json())
 app.use(cookieParser())
 
 
-// set the routes
-app.use('/blog', (req, res, next) => {
-  const m = req.method
-
-  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
-    auth(req, res, next)
-  } else {
-    next()
-  }
-
-}, blog)
+app.use('/blogs', async (req, res, next) => await auth(req , res , next , ['GET']), blog)
 
 app.use('/login', login)
-
-app.use('/users', (req, res, next) => {
-  const m = req.method
-
-  auth(req, res, next)
-}, users)
-
-app.use('/members', (req, res, next) => {
-  const m = req.method
-
-  if (m === 'POST' || m === 'DELETE') {
-    auth(req, res, next)
-  } else {
-    next()
-  }
-}, members)
-
-
-app.use('/upload', (req, res, next) => {
-  const m = req.method
-
-  if (m === 'POST' || m === 'GET') {
-    auth(req, res, next)
-  } else {
-    next()
-  }
-}, upload)
-
-
-app.use('/projects', (req, res, next) => {
-  const m = req.method
-
-  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
-    auth(req, res, next)
-  } else {
-    next()
-  }
-}, projects)
-
-app.use('/projecttype', (req, res, next) => {
-  const m = req.method
-
-  if (m === 'POST' || m === 'PUT') {
-    auth(req, res, next)
-  } else {
-    next()
-  }
-}, projecttype)
-
-app.use('/techs', (req, res, next) => {
-  const m = req.method
-
-  if (m === 'POST' || m === 'DELETE') {
-    auth(req, res, next)
-  } else {
-    next()
-  }
-}, techs)
-
-app.use('/partners', (req, res, next) => {
-  const m = req.method
-
-  if (m === 'POST' || m === 'DELETE' || m === 'PUT') {
-    auth(req, res, next)
-  } else {
-    next()
-  }
-}, partners)
-
-app.use('/services', (req, res, next) => {
-  const m = req.method
-
-  if (m === 'POST' || m === 'DELETE') {
-    auth(req, res, next)
-  } else {
-    next()
-  }
-}, services)
-
-app.use('/submittion', (req, res, next) => {
-  const m = req.method
-
-  if (m === 'DELETE' || m === 'GET') {
-    auth(req, res, next)
-  } else {
-    next()
-  }
-}, submittion)
-
-app.use('/docs', (req, res, next) => {
-  const m = req.method
-
-  if (m === 'POST') {
-    auth(req, res, next)
-  } else {
-    next()
-  }
-}, docs)
-
-
-
-
-
+app.use('/users', (req, res, next) => auth(req, res, next, []), users)
+app.use('/members', (req, res, next) => auth(req, res, next, ['GET']), members)
+app.use('/upload', (req, res, next) => auth(req, res, next, ['POST', 'GET']), upload)
+app.use('/projects', (req, res, next) => auth(req, res, next, ['GET']), projects)
+app.use('/projecttype', (req, res, next) => auth(req, res, next, ['GET']), projecttype)
+app.use('/techs', (req, res, next) => auth(req, res, next, ['GET']), techs)
+app.use('/partners', (req, res, next) => auth(req, res, next, ['GET']), partners)
+app.use('/services', (req, res, next) => auth(req, res, next, ['GET']), services)
+app.use('/submittion', (req, res, next) => auth(req, res, next, ['POST']), submittion)
+app.use('/docs', (req, res, next) => auth(req, res, next, ['GET']), docs)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { explorer: true }))
 
 app.use((err, req, res, next) => {
-  console.log(err)
 
   if (err) {
+    console.log(err)
+
     res.status(400).send({ error: error.messsage })
+
     next()
   } else {
+
     res.status(200).end()
     next()
   }
