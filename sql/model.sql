@@ -25,7 +25,7 @@ CREATE TABLE submittions(
   submittion_active boolean DEFAULT TRUE,
   submittion_fullname varchar(64) NOT NULL,
   submittion_message varchar(1000) NOT NULL,
-  submittion_phone varchar(15) NOT NULL,
+  submittion_phone int(len(submittion_phone) > 7 and len(submittion_phone) < 16) NOT NULL,
   submittion_email varchar(320) DEFAULT NULL,
   submittion_companyname varchar(32) DEFAULT NULL,
   submittion_created_at TIMESTAMP WITH TIME ZONE default CURRENT_TIMESTAMP

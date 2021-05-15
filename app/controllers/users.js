@@ -8,6 +8,7 @@ module.exports = {
       res.send(users)
     } catch (error) {
       console.log(error)
+
       res.send(error)
     }
   },

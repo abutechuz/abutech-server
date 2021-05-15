@@ -33,7 +33,6 @@ app.use(fileUpload({ parseNested: true }))
 app.use(express.json())
 app.use(cookieParser())
 
-
 app.use('/blogs', async (req, res, next) => await auth(req , res , next , ['GET']), blog)
 
 app.use('/login', login)
