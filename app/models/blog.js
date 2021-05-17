@@ -15,6 +15,22 @@ const getBlogs = async ({ query: { page, limit, lang } }) => {
   return blogs
 }
 
+const getById = async ({ query: { id , lang } }) => {
+  lang = lang ?? 'uz'
+  const SQL = `select
+  blog_id ,
+    blog_body_${lang} blog_body,
+    blog_created_at
+  from blogs
+   where blog_id = $1
+  `
+
+  const blog = await fetchOne(SQL, id)
+
+  return blog
+}
+
+
 const insertBlog = async ({body : { blog_body_uz , blog_body_ru , blog_body_en }}) => {
   const SQL = `
   insert into blogs
@@ -62,6 +78,7 @@ const deleteBlog = async ({ body: { blog_id } }) => {
 
 module.exports = {
   getBlogs,
+  getById,
   insertBlog,
   setBlog,
   deleteBlog

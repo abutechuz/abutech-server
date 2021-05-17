@@ -7,7 +7,15 @@ module.exports = {
 
       res.send(blogs)
     } catch (error) {
-      console.log(error)
+      res.send(error)
+    }
+  },
+  GETBYID: async (req, res) => {
+    try {
+      const blog = await blogsModel.getById(req)
+
+      res.send(blog)
+    } catch (error) {
       res.send(error)
     }
   },
