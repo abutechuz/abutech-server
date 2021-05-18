@@ -24,6 +24,7 @@ const partners = require('./routes/partners.js')
 const services = require('./routes/services.js')
 const docs = require('./routes/docs.js')
 const submittion = require('./routes/submittion.js')
+const features = require('./routes/feature.js')
 
 
 app.use(cors({ origin: '*' }))
@@ -46,6 +47,7 @@ app.use('/partners', (req, res, next) => auth(req, res, next, ['GET']), partners
 app.use('/services', (req, res, next) => auth(req, res, next, ['GET']), services)
 app.use('/submittion', (req, res, next) => auth(req, res, next, ['POST']), submittion)
 app.use('/docs', (req, res, next) => auth(req, res, next, ['GET']), docs)
+app.use('/features', (req, res, next) => auth(req, res, next, ['GET']), features)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { explorer: true }))
 
 module.exports = app

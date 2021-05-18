@@ -1,5 +1,5 @@
 const { verify } = require('./jwt.js')
-const { fetchOne } = require('../library/database/postgres.js')
+const { fetchOne } = require('./database/postgres.js')
 
 const auth = async (req , res , next , norequired_methods) => {
 
