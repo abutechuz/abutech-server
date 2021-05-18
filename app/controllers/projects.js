@@ -23,16 +23,6 @@ module.exports = {
     }
   },
 
-  PUT: async (req, res) => {
-    try {
-      const returning = await projectsModel.setProject(req)
-
-      res.send(returning)
-    } catch (error) {
-      res.send(error)
-    }
-  },
-
   DELETE: async (req, res) => {
     try {
       const blog = await projectsModel.deleteProject(req)
