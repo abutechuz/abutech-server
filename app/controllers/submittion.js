@@ -14,14 +14,10 @@ module.exports = {
   },
 
   POST: async (req, res) => {
-    // try {
+    try {
 
     let doc;
     let uploadPath
-
-    // if (!req.files || Object.keys(req.files).length === 0) {
-    //   return res.status(400).send('No files were uploaded.')
-    // }
 
     var path = require('path')
     var scriptName = path.dirname(path.dirname(path.dirname(__filename)))
@@ -69,9 +65,9 @@ module.exports = {
         validation: false
       })
     }
-    // } catch (error) {
-    //   res.send(error)
-    // }
+    } catch (error) {
+      res.send(error)
+    }
   },
 
   DELETE: async (req, res) => {
