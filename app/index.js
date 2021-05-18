@@ -48,19 +48,4 @@ app.use('/submittion', (req, res, next) => auth(req, res, next, ['POST']), submi
 app.use('/docs', (req, res, next) => auth(req, res, next, ['GET']), docs)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { explorer: true }))
 
-app.use((err, req, res, next) => {
-
-  if (err) {
-    console.log(err)
-
-    res.status(400).send({ error: error.messsage })
-
-    next()
-  } else {
-
-    res.status(200).end()
-    next()
-  }
-})
-
 module.exports = app
