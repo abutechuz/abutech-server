@@ -18,16 +18,16 @@ const insertSubmittions = async ({body : {
   submittion_email,
   submittion_companyname
 }}, submittion_brief) => {
-  const SQL = `insert into submittions ( submittion_fullname,submittion_message ,submittion_phone,submittion_email,submittion_companyname,submittion_brief) values($1,$2,$3,$4,$5,$6) returning *`
+  const SQL = `insert into submittions ( submittion_fullname,submittion_message ,submittion_phone,submittion_email,submittion_companyname,submittion_file) values($1,$2,$3,$4,$5,$6) returning *`
 
   try {
     return await fetchOne(SQL,
-      submittion_fullname,
-      submittion_message ,
+      submittion_fullname ?? null,
+      submittion_message ?? null,
       submittion_phone,
       submittion_email ?? null,
       submittion_companyname ?? null,
-      submittion_brief
+      submittion_brief 
     )
     } catch (error) {
 
