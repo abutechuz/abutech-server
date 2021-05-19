@@ -53,6 +53,7 @@ app.use('/services', (req, res, next) => auth(req, res, next, ['GET']), services
 app.use('/submittion', (req, res, next) => auth(req, res, next, ['POST']), submittion)
 app.use('/docs', (req, res, next) => auth(req, res, next, ['GET']), docs)
 app.use('/features', (req, res, next) => auth(req, res, next, ['GET']), features)
+app.use('/faq', (req, res, next) => auth(req, res, next, ['GET']), faq)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { explorer: true }))
 
 module.exports = app
