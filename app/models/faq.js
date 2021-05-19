@@ -30,9 +30,9 @@ const addFaq = async ({ body: { faq_question_uz,
     faq_answer_en)
 }
 
-const deleteFaq = async ({body : faq_id}) => {
+const deleteFaq = async ({body : {faq_id}}) => {
   const SQL = `delete from faq where faq_id=$1`
-
+  
   return await fetch(SQL , faq_id)
 }
 
