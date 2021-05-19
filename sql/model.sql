@@ -97,7 +97,8 @@ CREATE TABLE members(
   member_fullname varchar(64) NOT NULL,
   member_picture varchar(4096) NOT NULL,
   member_profession int NOT NULL REFERENCES professions(profession_id),
-  member_added_at TIMESTAMP WITH TIME ZONE default CURRENT_TIMESTAMP);
+  member_added_at TIMESTAMP WITH TIME ZONE default CURRENT_TIMESTAMP
+  );
 
 comment on table members is 'Our team''s members';
 

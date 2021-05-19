@@ -9,8 +9,8 @@ const getMembers = async (page, limit) => {
     p.profession_name as member_profession
   from
     members as m
-  join professions as p on m.member_id = p.profession_id
-  where m.member_active = True offset ($1 - 1) * $2 fetch next $2 rows only;
+  join professions as p on m.member_profession = p.profession_id 
+   offset ($1 - 1) * $2 fetch next $2 rows only;
   `
 
   const members = await fetch(SQL, page, limit)
