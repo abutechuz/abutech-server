@@ -25,7 +25,7 @@ const services = require('./routes/services.js')
 const docs = require('./routes/docs.js')
 const submittion = require('./routes/submittion.js')
 const features = require('./routes/feature.js')
-
+const faq = require('./routes/faq.js')
 
 app.use(cors({ origin: '*' }))
 app.use(express.urlencoded({ extended: false }))
