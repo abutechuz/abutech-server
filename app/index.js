@@ -30,7 +30,12 @@ const features = require('./routes/feature.js')
 app.use(cors({ origin: '*' }))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, '../data/')))
-app.use(fileUpload({ parseNested: true }))
+app.use(fileUpload({ parseNested: true , 
+  limits: {
+  fileSize: 5000000 //5mb
+},
+abortOnLimit: true
+}))
 app.use(express.json())
 app.use(cookieParser())
 
