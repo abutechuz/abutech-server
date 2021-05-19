@@ -1,4 +1,7 @@
-const { fetch, fetchOne } = require('../library/database/postgres')
+const {
+  fetch,
+  fetchOne
+} = require('../library/database/postgres')
 
 const getMembers = async (page, limit) => {
   const SQL = `
@@ -18,13 +21,12 @@ const getMembers = async (page, limit) => {
   return members
 }
 
-const addMember = async (req) => {
-  const {
-    fullName,
-    picture,
+const addMember = async ({
+  body: {
+    full_name,
     profession
-  } = req.body
-
+  }
+}, picture) => {
 
   const SQL = `
     insert into members(
@@ -35,26 +37,24 @@ const addMember = async (req) => {
     values ($1,$2,$3) returning * ;
     `
 
-    const member = await fetchOne(SQL, fullName, picture, profession)
+  const member = await fetchOne(SQL, full_name, picture, profession)
 
-    return member
-  }
+  return member
+}
 
-  const deleteMember = async (req) => {
-    const { member_id } = req.body
+const deleteMember = async ({body : { member_id }}) => {
 
-    const SQL = `
+  const SQL = `
       delete from members where member_id = $1 returning *;
     `
 
-    const deletedMember = await fetch(SQL, member_id)
+  const deletedMember = await fetch(SQL, member_id)
 
-    return deletedMember
-  }
+  return deletedMember
+}
 
-  module.exports = {
-    getMembers,
-    addMember,
-    deleteMember
-  }
-
+module.exports = {
+  getMembers,
+  addMember,
+  deleteMember
+}
