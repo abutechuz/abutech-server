@@ -31,7 +31,8 @@ CREATE TABLE submittions(
   submittion_email varchar(320) DEFAULT NULL,
   submittion_file varchar(72) DEFAULT NULL,
   submittion_companyname varchar(32) DEFAULT NULL,
-  submittion_created_at TIMESTAMP WITH TIME ZONE default CURRENT_TIMESTAMP
+  submittion_created_at TIMESTAMP WITH TIME ZONE
+  default CURRENT_TIMESTAMP
 );
 
 comment on table submittions is 'Form submittions from clients';
@@ -193,13 +194,20 @@ insert into technologies(
     'image.jpg'
   );
 
-create table docs(
-  doc_id serial not NULL primary key,
-  doc_src VARCHAR(4096) not null,
-  service_id int not null REFERENCES services(service_id),
-  doc_date TIMESTAMP not null
-  default CURRENT_TIMESTAMP
+create table faq(
+  faq_id serial not null,
+  faq_question_uz varchar(1028) not null,
+  faq_answer_uz varchar(1028) not null,
+  faq_question_ru varchar(1028) not null,
+  faq_answer_ru varchar(1028) not null,
+  faq_question_en varchar(1028) not null,
+  faq_answer_en varchar(1028) not null,
+  faq_date timestamp not null
+  default current_timestamp
 );
+
+
+
 --create unique index technologies_uniq_idx on technologies(lower(technology_name));
 --comment on table blogs is 'What technologies we use!';
 
