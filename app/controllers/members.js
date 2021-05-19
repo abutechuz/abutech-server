@@ -38,7 +38,7 @@ module.exports = {
     member_img = req.files.member_img || {};
     let uuid = require("uuid").v4()
     uploadPath = scriptName + '/data/img/' + uuid;
-    console.log(uuid);
+    
     if (member_img.mimetype.match(/image/g)) {
       member_img.mv(uploadPath, async function (err) {
         if (err) {
