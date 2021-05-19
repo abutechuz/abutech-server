@@ -8,10 +8,8 @@ const getTechnologies = async () => {
   return await fetch(SQL)
 }
 
-const addTechnology = async (req) => {
-
-  const { technology_name, technology_type, technology_image  } = req.body
-
+const addTechnology = async ({body : { technology_name, technology_type }},technology_image) => {
+  
   const SQL = `
   insert into technologies(
     technology_name,
