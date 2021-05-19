@@ -47,7 +47,7 @@ const addMember = async (req) => {
       delete from members where member_id = $1 returning *;
     `
 
-    const deletedMember = await fetchOne(SQL, member_id)
+    const deletedMember = await fetch(SQL, member_id)
 
     return deletedMember
   }
