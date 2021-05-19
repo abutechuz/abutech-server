@@ -1,12 +1,11 @@
 module.exports = {
-	PORT: process.env.PORT || 8001,
+	PORT: process.env.PORT ,
 	DATABASE: {
-		host: 'hattie.db.elephantsql.com',
-		user: 'dfkwqrej',
-		password: 'jOHJ58wfNnAT4jeV5fE7BqplXpDlhGV0',
-		database: 'dfkwqrej',
-		port: 5432
+		host: process.env.DATABASE_HOST,
+		user: process.env.DATABASE_USER ,
+		password: process.env.DATABASE_PASSWORD,
+		database: process.env.DATABASE_DB ,
+		port: process.env.DATABASE_PORT
 	},
-
-	JWT_KEY: 'Secretkey'
+	JWT_KEY: process.env.JWT_KEY
 }
