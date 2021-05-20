@@ -10,16 +10,14 @@ const getServices = async (page, limit, lang) => {
   return await fetch(SQL, page, limit, lang)
 }
 
-const addService = async (req) => {
-  const {
-    image,
-    uz_title,
-    uz_body,
-    ru_title,
-    ru_body,
-    en_title,
-    en_body
-  } = req.body
+const addService = async ({body : {
+  uz_title,
+  uz_body,
+  ru_title,
+  ru_body,
+  en_title,
+  en_body
+}} ,image) => {
 
   const SQL = `
   select add_service(
